@@ -10,7 +10,7 @@ var corsOptions = {
 }
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var modelsRouter = require('./routes/model');
+var modelsRouter = require('./routes/models');
 var syncRouter = require('./routes/sync');
 
 var app = express();
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/models',modelsRouter);
+app.use('/model',modelsRouter);
 app.use('/sync',syncRouter);
 
 // catch 404 and forward to error handler
