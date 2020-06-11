@@ -4,11 +4,9 @@ var multer = require('multer');
 const UPLOAD_PATH = 'public/models';
 const fs = require('fs');
 const AWS = require('aws-sdk');
-const author = {
-    accessKeyId: "AKIAYC6BLD5ZIO7LL6CV",
-    secretAccessKey: "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",
-    region: "ap-southeast-1"
-}
+
+const author = require('../config/s3.env.js');
+// const author = configS3.author;
 const s3 = new AWS.S3({
     accessKeyId: author.accessKeyId,
     secretAccessKey: author.secretAccessKey,
