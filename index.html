@@ -26,19 +26,19 @@
 
     <!--    <a-entity id="planer" geometry="primitive: plane;" material="color: blue"></a-entity>-->
     <a-assets>
-<!--                <a-asset-item id="tree-obj" src="models/Room/room.obj"></a-asset-item>-->
-<!--                <a-asset-item id="tree-mtl" src="models/Room/room.mtl"></a-asset-item>-->
+        <!--                <a-asset-item id="tree-obj" src="models/Room/room.obj"></a-asset-item>-->
+        <!--                <a-asset-item id="tree-mtl" src="models/Room/room.mtl"></a-asset-item>-->
         <!--        <audio id="river" src="x.wav" preload="auto"></audio>-->
         <!--        <a-asset-item id="tree2-obj" src="models/Box/box.obj"></a-asset-item>-->
         <!--        <a-asset-item id="tree2-mtl" src="models/Box/box.mtl"></a-asset-item>-->
-        <!--        <a-asset-item id="tree-glb" src="models/nha7.gltf"></a-asset-item>-->
+        <a-asset-item id="tree-glb" src="https://3d-model-cdn.s3.ap-southeast-1.amazonaws.com/banghoanthien6.glb"></a-asset-item>
         <a-asset-item id="door-glb" src="models/baseCreator/door.glb"></a-asset-item>
         <a-asset-item id="base-glb" src="models/baseCreator/baseForObJect.glb"></a-asset-item>
-</a-assets>
+    </a-assets>
     <!--    <a-entity id="xca" position="0.5 0 0" visible="true" scale="0.2 0.2 0.2" gltf-model="#cityModel"-->
     <!--              modify-materials></a-entity>-->
-<!--        <a-entity id='entityObj' obj-model="obj: #tree-obj; mtl: #tree-mtl" sound="src: #river; on: click"></a-entity>-->
-    <!--    <a-entity id="entityGltf" gltf-model="#tree-glb"></a-entity>-->
+    <!--        <a-entity id='entityObj' obj-model="obj: #tree-obj; mtl: #tree-mtl" sound="src: #river; on: click"></a-entity>-->
+    <a-entity id="entityGltf" gltf-model="#tree-glb"></a-entity>
     <!--            <a-entity id='entityObj2' obj-model="obj: #tree2-obj; mtl: #tree2-mtl"></a-entity>-->
 
 
@@ -75,7 +75,7 @@
           dialogBoxColor: #964f00;
           "></a-entity>
 
-<a-box id="wall-1591799117528" scale="6.536 3.5 0.14" color="#cdc6c6" ></a-box>
+    <a-box id="wall-1591799117528" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
 </a-scene>
 <script>
     const BASE_URL = window.location.href;

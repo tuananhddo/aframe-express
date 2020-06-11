@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var modelsRouter = require('./routes/models');
 var syncRouter = require('./routes/sync');
+var awsRouter = require('./routes/aws');
 
 var app = express();
 app.use(cors())
@@ -33,6 +34,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/model',modelsRouter);
 app.use('/sync',syncRouter);
+app.use('/aws',awsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -30,8 +30,6 @@ router.get('/', function (req, res, next) {
 const BASE_URL = 'http://localhost:3000';
 const BASE_MODEL_URL = BASE_URL + '/models';
 router.post('/', upload.single('model'), function (req, res, next) {
-    // res.send('respond with a resource');
-    console.log(req.file, req.body)
 
     const processedFile = req.file || {}; // MULTER xử lý và gắn đối tượng FILE vào req
     let orgName = processedFile.originalname || ''; // Tên gốc trong máy tính của người upload
@@ -40,9 +38,9 @@ router.post('/', upload.single('model'), function (req, res, next) {
     // Đổi tên của file vừa upload lên, vì multer đang đặt default ko có đuôi file
     // const fullPathInServ = ;;
     const newFullPath = `${UPLOAD_PATH}/${orgName}`;
+
     fs.renameSync(fullPathInServ, newFullPath);
     const data = {name: orgName, link: orgName};
     res.send(JSON.stringify(data))
 });
-
 module.exports = router;
