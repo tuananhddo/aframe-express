@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script>
+        const BASE_URL = window.location.protocol + "//" + window.location.host;
+    </script>
+    <script src="/js/control.js"></script>
+    <script src="/js/aframe-dialog-popup-component.js"></script>
+    <script src="/js/getCreateEntity.js"></script>
+
+</head>
+<body>
+<!--<a-scene inspector="url: http://localhost:3333/dist/aframe-inspector.js">-->
+
+<a-scene id='mainUserScene' background="color: #FAFAFA">
+    <a-entity id="rig" wasd-controls camera position="0 2 0" look-controls>
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+    </a-entity>
+    <a-assets>
+        <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
+        <a-asset-item id="base-glb" src="/models/baseCreator/baseForObJect.glb"></a-asset-item>
+    </a-assets>
+
+</a-scene>
+<script>
+    // const BASE_URL = window.location.protocol + "//" + window.location.host;
+    const scene = document.querySelector('#mainUserScene');
+    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector-local.min.js`;
+    scene.setAttribute('inspector', inspectorURL);
+    console.log(scene)
+    var inspector = scene.components.inspector;
+
+    scene.addEventListener('loaded', function () {
+        scene.setAttribute('inspector', inspectorURL);
+
+    });</script>
+<!--<script src=" https:
+    //unpkg.com/aframe-room-component/dist/aframe-room-component.min.js"></script>-- >
+
+< /body>
+< /html>
+

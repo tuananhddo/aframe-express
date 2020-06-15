@@ -14,9 +14,9 @@ router.get('/', function (req, res, next) {
         }
         // res.send(JSON.stringify(files));
         let js = JSON.stringify(files);
-        files.forEach(file => {
-            console.log(file);
-        });
+        // files.forEach(file => {
+        //     console.log(file);
+        // });
         listFile = files.map((item) => {
             return {
                 name: item,
@@ -27,22 +27,20 @@ router.get('/', function (req, res, next) {
 
     });
 });
-const BASE_URL = 'http://localhost:3000';
-const BASE_MODEL_URL = BASE_URL + '/models';
-router.post('/', upload.single('model'), function (req, res, next) {
-    // res.send('respond with a resource');
-    console.log(req.file, req.body)
 
+router.post('/', upload.single('model'), function (req, res, next) {
+    const BASE_URL = req.protocol + '://' + req.get('host');
+    const BASE_MODEL_URL = BASE_URL + '/models/';
     const processedFile = req.file || {}; // MULTER xử lý và gắn đối tượng FILE vào req
     let orgName = processedFile.originalname || ''; // Tên gốc trong máy tính của người upload
     orgName = orgName.trim().replace(/ /g, "-")
-    const fullPathInServ = processedFile.path; // Đường dẫn đầy đủ của file vừa đc upload lên server
+    const fullPathInServ = processedFile.path || ''; // Đường dẫn đầy đủ của file vừa đc upload lên server
     // Đổi tên của file vừa upload lên, vì multer đang đặt default ko có đuôi file
     // const fullPathInServ = ;;
     const newFullPath = `${UPLOAD_PATH}/${orgName}`;
+
     fs.renameSync(fullPathInServ, newFullPath);
-    const data = {name: orgName, link: orgName};
+    const data = {name: orgName, link: BASE_MODEL_URL + orgName};
     res.send(JSON.stringify(data))
 });
-
 module.exports = router;

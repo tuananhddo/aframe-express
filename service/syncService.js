@@ -143,15 +143,15 @@ function updateCreateFile(file, fileContent, definition) {
     var componentString = " ";
     for (let attr in definition.components) {
         // entity.setAttribute(attr, definition.components[attr]);
-        componentString += attr + "='" + definition.components[attr] + "' ";
+        componentString += attr + '="' + definition.components[attr] + '" ';
     }
-    let entityString = '<' + definition.element + componentString + '>' + `</${definition.element}>\n`;
+    let entityString = "<" + definition.element + componentString + ">" + "</" + definition.element + ">\n";
     // const entity = document.createElement(definition.element);
     // load default attributes
     if (definition.element == 'a-asset-item' || definition.element == 'img') {
-        fileContent = fileContent.replace('</a-assets>', `${entityString}</a-assets>`)
+        fileContent = fileContent.replace("</a-assets>", entityString + "</a-assets>")
     } else {
-        fileContent = fileContent.replace('</a-scene>', `${entityString}</a-scene>`)
+        fileContent = fileContent.replace("</a-scene>", entityString + "</a-scene>")
     }
     return fileContent;
 }

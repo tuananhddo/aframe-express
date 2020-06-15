@@ -54,17 +54,17 @@
 <div>
     <a-scene>
         <a-assets>
-            <a-asset-item id="tree-obj" src="models/Room/room.obj"></a-asset-item>
-            <a-asset-item id="tree-mtl" src="models/Room/room.mtl"></a-asset-item>
+<!--            <a-asset-item id="tree-obj" src="models/Room/room.obj"></a-asset-item>-->
+<!--            <a-asset-item id="tree-mtl" src="models/Room/room.mtl"></a-asset-item>-->
             <!--        <audio id="river" src="x.wav" preload="auto"></audio>-->
             <!--        <a-asset-item id="tree2-obj" src="models/Box/box.obj"></a-asset-item>-->
             <!--        <a-asset-item id="tree2-mtl" src="models/Box/box.mtl"></a-asset-item>-->
-            <a-asset-item id="door-glb" src="models/door.glb"></a-asset-item>
+<!--            <a-asset-item id="door-glb" src="models/door.glb"></a-asset-item>-->
         </a-assets>
-        <a-entity id="rig" wasd-controls camera position="0 0 0" look-controls>
+        <a-entity id="rig" background="transparent: true" camera="active: false" look-controls="pointerLockEnabled: true; reverseMouseDrag: true" wasd-controls camera position="0 0 0" look-controls>
             <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
         </a-entity>
-        <a-entity id="entityGltf" gltf-model="#door-glb"></a-entity>
+<!--        <a-entity id="entityGltf" text="align: right; whiteSpace: pre" gltf-model="#door-glb"></a-entity>-->
 
         <a-entity position="0.817 0.248 -3.2">
             <a-entity
