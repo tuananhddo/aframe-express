@@ -123,7 +123,7 @@ function deleteEntity(username, deleteId, callback) {
 
             let sql = "UPDATE user SET createData = ?,updateData = ? WHERE username = ?";
 
-            connection.query(sql, [JSON.stringify(newCreateDataJson), JSON.stringify(newUpdateDataJson), user.username], function (err, results) {
+            connection.query(sql, [JSON.stringify(newCreateDataJson), JSON.stringify(newUpdateDataJson), username], function (err, results) {
                 if (err) throw err;
                 console.log(results.affectedRows + " record(s) updated");
             });
