@@ -59,8 +59,13 @@ function getCreateData(username, callback) {
     let sql = 'SELECT createData FROM user WHERE username = ?'
     connection.query(sql, [username], function (err, results) {
         if (err) throw err;
+        if (results[0].createData) {
+            callback(JSON.parse(results[0].createData))
+        } else {
+            callback([])
+        }
+
         // console.log(results[0].createData);
-        callback(JSON.parse(results[0].createData))
         // return JSON.parse(results[0].createData);
     });
 }
