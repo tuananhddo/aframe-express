@@ -21,8 +21,18 @@
     <a-assets>
         <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
         <a-asset-item id="base-glb" src="/models/baseCreator/baseForObJect.glb"></a-asset-item>
-    </a-assets>
+        <audio id="river" src="https://3d-model-cdn.s3-ap-southeast-1.amazonaws.com/bensound-ukulele.mp3"></audio>
 
+    </a-assets>
+    <a-box id="box"
+           position="0 2 0"
+           height="2"
+           color="#FFC65D"
+           sound="src: #river"
+           audiohandler
+           cursor-listener>
+
+    </a-box>
 </a-scene>
 <script>
     // const BASE_URL = window.location.protocol + "//" + window.location.host;
