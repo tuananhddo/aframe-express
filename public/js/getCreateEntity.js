@@ -10,7 +10,7 @@ fetch(BASE_URL + '/sync/list-create')
                 entity.setAttribute(comItem, item.components[comItem])
             }
             // entity.setAttribute(item.c)
-            if (item.element == "a-asset-item" || item.element == 'img') {
+            if (item.element == "a-asset-item" || item.element == 'img' || item.element == 'audio') {
                 mySceneAssets.append(entity)
             } else {
                 mySceneEl.append(entity)

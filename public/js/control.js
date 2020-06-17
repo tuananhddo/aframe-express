@@ -34,8 +34,15 @@ AFRAME.registerComponent('audiohandler', {
         let playing = false;
         let audio = document.querySelector('#audio');
         this.el.addEventListener('click', () => {
-            this.el.components.sound.stopSound();
+            var allSound = document.querySelectorAll('[sound]');
+            console.log(allSound)
+            for (var i = 0; i < allSound.length; i++) {
+                allSound[i].components.sound.stopSound()
+            }
+
+            // this.el.components.sound.stopSound();
             this.el.components.sound.playSound();
+
             // if (!playing) {
             //   audio.play();
             // } else {
@@ -46,22 +53,23 @@ AFRAME.registerComponent('audiohandler', {
         });
     }
 });
-AFRAME.registerComponent('cursor-listener', {
+AFRAME.registerComponent('audio-stopper', {
     init: function () {
         var lastIndex = -1;
         var COLORS = ['red', 'green', 'blue'];
         console.log(this)
 
-        this.el.addEventListener('mouseleave', function (evt) {
+        this.el.addEventListener('click', function (evt) {
             // lastIndex = (lastIndex + 1) % COLORS.length;
             // this.setAttribute('material', 'color', COLORS[lastIndex]);
             // console.log('I was clicked at: ', evt.detail.intersection.point);
             // this.el.components.sound.stopSound();
-            this.components.sound.stopSound()
-            console.log("MOUSEENTER")
-            console.log()
-            console.log(evt)
-
+            if (!this.components.sound) {
+                var allSound = document.querySelectorAll('[sound]');
+                for (var i = 0; i < allSound.length; i++) {
+                    allSound[i].components.sound.stopSound()
+                }
+            }
         });
     }
 });

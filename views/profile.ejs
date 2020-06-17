@@ -21,7 +21,8 @@
     <a-assets>
         <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
         <a-asset-item id="base-glb" src="/models/baseCreator/baseForObJect.glb"></a-asset-item>
-        <audio id="river" src="https://3d-model-cdn.s3-ap-southeast-1.amazonaws.com/bensound-ukulele.mp3"></audio>
+        <audio id="river" src="https://3d-model-cdn.s3-ap-southeast-1.amazonaws.com/bensound-ukulele.mp3" preload="auto"></audio>
+        <video id="penguin-sledding" autoplay loop="true" src="/video/a.mp4"></video>
 
     </a-assets>
     <a-box id="box"
@@ -29,15 +30,16 @@
            height="2"
            color="#FFC65D"
            sound="src: #river"
-           audiohandler
-           cursor-listener>
-
+           audiohandler=""
+    >
     </a-box>
+    <a-video src="#penguin-sledding" audio-stopper width="16" height="9" position="0 0 -20"></a-video>
+
 </a-scene>
 <script>
     // const BASE_URL = window.location.protocol + "//" + window.location.host;
     const scene = document.querySelector('#mainUserScene');
-    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector.min.js`;
+    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector-local.min.js`;
     scene.setAttribute('inspector', inspectorURL);
     console.log(scene)
     var inspector = scene.components.inspector;
