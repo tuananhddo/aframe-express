@@ -97,7 +97,9 @@ function processUpdateData(data, deleteId) {
         //     }
         //     console.log(key)
         // }
-        if (jsonData === null){return {}}
+        if (jsonData === null) {
+            return {}
+        }
         let {[deleteId]: _, ...result} = jsonData;
         return result
     } else {
@@ -143,10 +145,23 @@ function deleteEntity(profileId, deleteId, callback) {
     });
 }
 
+function resetProfile(profileId, callback) {
+
+    let sql = "UPDATE profile SET createData = ?,updateData = ? WHERE id = ?";
+
+    connection.query(sql, ["", "", profileId], function (err, results) {
+        if (err) throw err;
+        console.log(results.affectedRows + " record(s) updated");
+    });
+    callback({})
+
+}
+
 module.exports = {
     updateProfileUpdateData: updateProfileUpdateData,
     updateProfileCreateData: updateProfileCreateData,
     getCreateData: getCreateData,
     getUpdateData: getUpdateData,
-    deleteEntity: deleteEntity
+    deleteEntity: deleteEntity,
+    resetProfile: resetProfile
 }

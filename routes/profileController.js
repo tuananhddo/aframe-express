@@ -16,7 +16,15 @@ router.post('/:id/create', (req, res) => {
     const changes = req.body;
     const id = req.params.id;
     // userRepo.updateUserCreateData(req.user, changes);
-    profileRepo.updateProfileCreateData(id, changes);
+    profileRepo.updateProfileCreateData(id, changes, function () {
+        res.sendStatus(200);
+    });
+
+});
+router.get('/:id/reset', authService.isLoggedIn, (req, res) => {
+    const id = req.params.id;
+    // userRepo.updateUserCreateData(req.user, changes);
+    profileRepo.resetProfile(id);
 
     // syncService.syncCreate(changes);
     res.sendStatus(200);
