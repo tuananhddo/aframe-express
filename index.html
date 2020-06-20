@@ -14,13 +14,16 @@
     <script src="js/aframe-dialog-popup-component.js"></script>
     <!--    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>-->
 
-
+    <script>
+    </script>
 </head>
 <body>
 <!--<a-scene inspector="url: http://localhost:3333/dist/aframe-inspector.js">-->
 
 <a-scene id='mainUserScene' background="color: #FAFAFA">
-    <a-entity id="rig" wasd-controls camera position="0 2 0" look-controls>
+    <a-entity id="rig" background="transparent: true" camera="active: false"
+              look-controls="pointerLockEnabled: true; reverseMouseDrag: true" wasd-controls camera position="0 2 0"
+              look-controls>
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
     </a-entity>
 
@@ -31,14 +34,15 @@
         <!--        <audio id="river" src="x.wav" preload="auto"></audio>-->
         <!--        <a-asset-item id="tree2-obj" src="models/Box/box.obj"></a-asset-item>-->
         <!--        <a-asset-item id="tree2-mtl" src="models/Box/box.mtl"></a-asset-item>-->
-        <a-asset-item id="tree-glb" src="https://3d-model-cdn.s3.ap-southeast-1.amazonaws.com/banghoanthien6.glb"></a-asset-item>
+        <a-asset-item id="tree-glb"
+                      src="https://3d-model-cdn.s3.ap-southeast-1.amazonaws.com/banghoanthien6.glb"></a-asset-item>
         <a-asset-item id="door-glb" src="models/baseCreator/door.glb"></a-asset-item>
         <a-asset-item id="base-glb" src="models/baseCreator/baseForObJect.glb"></a-asset-item>
     </a-assets>
     <!--    <a-entity id="xca" position="0.5 0 0" visible="true" scale="0.2 0.2 0.2" gltf-model="#cityModel"-->
     <!--              modify-materials></a-entity>-->
     <!--        <a-entity id='entityObj' obj-model="obj: #tree-obj; mtl: #tree-mtl" sound="src: #river; on: click"></a-entity>-->
-    <a-entity id="entityGltf" gltf-model="#tree-glb"></a-entity>
+    <a-entity id="entityGltf" text="align: right; whiteSpace: pre" gltf-model="#tree-glb"></a-entity>
     <!--            <a-entity id='entityObj2' obj-model="obj: #tree2-obj; mtl: #tree2-mtl"></a-entity>-->
 
 
@@ -75,7 +79,24 @@
           dialogBoxColor: #964f00;
           "></a-entity>
 
-    <a-box id="wall-1591799117528" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+
+    <a-box id="wall-1592115496311" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592115665438" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592115759023" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592115793116" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592115805111" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592116116673" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-entity id="door-1592116133760" gltf-model="#door-glb"></a-entity>
+    <a-box id="wall-1592116218229" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-entity id="door-1592116235162" gltf-model="#door-glb"></a-entity>
+    <a-box id="wall-1592116256781" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-entity></a-entity>
+    <a-entity id="door-1592116348301" gltf-model="#door-glb"></a-entity>
+    <a-entity></a-entity>
+    <a-box id="wall-1592116402627" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-box id="wall-1592116449629" scale="6.536 3.5 0.14" color="#cdc6c6"></a-box>
+    <a-entity></a-entity>
+    <a-entity id="base-1592119201262" gltf-model="#base-glb"></a-entity>
 </a-scene>
 <script>
     const BASE_URL = window.location.href;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Grid Demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <style type="text/css">
+        #video-permission {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 10000;
+            display: none;
+        }
+
+        #video-permission-button {
+            position: fixed;
+            top: calc(50% - 1em);
+            left: calc(50% - 60px);
+            width: 120px;
+            height: 2em;
+        }
+    </style>
+    <script>
+        const BASE_URL = window.location.protocol + "//" + window.location.host;
+    </script>
+    <script src="/js/control.js"></script>
+    <script src="/js/getCreateEntity.js"></script>
+
+</head>
+<body>
+
+<div id="video-permission">
+    <button id="video-permission-button">Allow VR video</button>
+</div>
+
+<a-scene id="mainUserScene" fog="type: linear; near:12; far:20; color: #dbdedb;"><!--Night mode: #0c192a-->
+
+    <a-assets>
+        <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
+        <a-asset-item id="base-glb" src="/models/baseCreator/baseForObJect.glb"></a-asset-item>
+    </a-assets>
+    <a-assets>
+        <img src="/images/play3.png" id="play" crossorigin="anonymous">
+        <img src="/images/pause.png" id="pause" crossorigin="anonymous">
+        <img src="/images/volume-normal.png" id="volume-normal" crossorigin="anonymous">
+        <img src="/images/volume-mute.png" id="volume-mute" crossorigin="anonymous">
+        <img src="/images/seek-back.png" id="seek-back" crossorigin="anonymous">
+        <img src="/images/white_grid_thin.png" id="grid" crossorigin="anonymous">
+        <video id="video-src-default" src=""></video>
+        <video id="video-srcc" src="/video/a.mp4"></video>
+        <video id="video-srcc2" src="/video/a.mp4"></video>
+
+    </a-assets>
+
+    <!-- CURSOR -->
+    <a-entity position="0 3.8 -10">
+        <a-entity id="rig" camera wasd-controls look-controls>
+            <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+        </a-entity>
+    </a-entity>
+    <!-- END CURSOR -->
+
+    <!-- MEDIAS HOLDER -->
+    <!--    <a-sound id="alert-sound" src="src: url(assets/action.wav)" autoplay="false" position="0 0 0"></a-sound>-->
+    <a-video video-handler id="video-screen" src="#video-srcc" position="0.5 5.0 -13.1" width="4" height="2"></a-video>
+
+    <!-- END MEDIAS HOLDER -->
+
+    <!-- CONTROLS -->
+    <a-image id="control-back" width="0.15" height="0.15" src="#seek-back" position="-0.3 1.1 -13.05" visible="false"
+             scale="0.85 0.85 0.85"></a-image>
+    <a-image id="control-play" width="0.3" height="0.3" src="#play" position="0.5 1.1 -13.05" visible="false"
+    ></a-image>
+    <a-image id="control-volume" width="0.15" height="0.15" src="#volume-normal" position="1.3 1.1 -13.05"
+             visible="false"
+             scale="0.75 0.75 0.75"></a-image>
+    <!-- END CONTROLS -->
+
+</a-scene>
+<script>
+    // const BASE_URL = window.location.protocol + "//" + window.location.host;
+    const myScene = document.querySelector('#mainUserScene');
+    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector-local.min.js`;
+    // myScene.setAttribute('inspector', inspectorURL);
+    console.log(myScene)
+    // var inspector = myScene.components.inspector;
+
+    myScene.addEventListener('loaded', function () {
+        myScene.setAttribute('inspector', inspectorURL);
+
+    });
+</script>
+<script src="/js/AVideoPlayer.js"></script>
+<script src="/js/initPlayer.js"></script>
+<script src="/js/video-handler.js"></script>
+</body>
+</html>

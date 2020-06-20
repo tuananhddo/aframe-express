@@ -1,58 +1,75 @@
-// Component to change to a sequential color on click.
+// // Component to change to a sequential color on click.
+//
+// AFRAME.registerComponent('cursor-listener', {
+//     init: function () {
+//         var lastIndex = -1;
+//         var COLORS = ['red', 'green', 'blue'];
+//         this.el.addEventListener('click', function (evt) {
+//             lastIndex = (lastIndex + 1) % COLORS.length;
+//             // this.setAttribute('material', 'color', COLORS[lastIndex]);
+//             var playerEl = document.querySelector('#rig');
+//
+//             // playerEl.object3D.position.x = 0;
+//             // playerEl.object3D.position.y = 0;
+//             // playerEl.object3D.position.z = 0;
+//             let checkpointPos = this.getAttribute('position')
+//             let newPos = {
+//                 x: checkpointPos.x,
+//                 y: playerEl.object3D.position.y,
+//                 z: checkpointPos.z
+//
+//             }
+//             console.log(newPos);
+//             playerEl.setAttribute('position', newPos);
+//
+//             console.log(playerEl.object3D.position)
+//
+//             // textEl.setAttribute('visible', !textEl.getAttribute('visible'))
+//         });
+//
+//     }
+// });
+AFRAME.registerComponent('audiohandler', {
+    init: function () {
+        let playing = false;
+        let audio = document.querySelector('#audio');
+        this.el.addEventListener('click', () => {
+            var allSound = document.querySelectorAll('[sound]');
+            console.log(allSound)
+            for (var i = 0; i < allSound.length; i++) {
+                allSound[i].components.sound.stopSound()
+            }
 
-AFRAME.registerComponent('cursor-listener', {
+            // this.el.components.sound.stopSound();
+            this.el.components.sound.playSound();
+
+            // if (!playing) {
+            //   audio.play();
+            // } else {
+            //   audio.pause();
+            //   audio.currentTime = 0;
+            // }
+            // playing = !playing;
+        });
+    }
+});
+AFRAME.registerComponent('audio-stopper', {
     init: function () {
         var lastIndex = -1;
         var COLORS = ['red', 'green', 'blue'];
+        console.log(this)
+
         this.el.addEventListener('click', function (evt) {
-            lastIndex = (lastIndex + 1) % COLORS.length;
+            // lastIndex = (lastIndex + 1) % COLORS.length;
             // this.setAttribute('material', 'color', COLORS[lastIndex]);
-            var playerEl = document.querySelector('#rig');
-
-            // playerEl.object3D.position.x = 0;
-            // playerEl.object3D.position.y = 0;
-            // playerEl.object3D.position.z = 0;
-            let checkpointPos = this.getAttribute('position')
-            let newPos = {
-                x:  checkpointPos.x,
-                y: playerEl.object3D.position.y,
-                z: checkpointPos.z
-
+            // console.log('I was clicked at: ', evt.detail.intersection.point);
+            // this.el.components.sound.stopSound();
+            if (!this.components.sound) {
+                var allSound = document.querySelectorAll('[sound]');
+                for (var i = 0; i < allSound.length; i++) {
+                    allSound[i].components.sound.stopSound()
+                }
             }
-            console.log(newPos);
-            playerEl.setAttribute('position', newPos);
-
-            console.log( playerEl.object3D.position)
-
-            // textEl.setAttribute('visible', !textEl.getAttribute('visible'))
         });
-
     }
 });
-// var playerEl = document.querySelector('[camera]');
-// var box = document.querySelector('#box');
-// console.log(box)
-// // console.log(playerEl)
-// playerEl.addEventListener('collide', function (e) {
-//     console.log('Player has collided with body #' + e.detail.body.id);
-//     alert()
-//     e.detail.target.el;  // Original entity (playerEl).
-//     e.detail.body.el;    // Other entity, which playerEl touched.
-//     e.detail.contact;    // Stats about the collision (CANNON.ContactEquation).
-//     e.detail.contact.ni; // Normal (direction) of the collision (CANNON.Vec3).
-// });
-// document.addEventListener('keydown', function(event) {
-//     if(event.key === 'a' || event.key === 'ArrowLeft') {
-//         alert('Left was pressed');
-//     }
-//     else if(event.key == 'w') {
-//         playerPos = playerEl .getAttribute('position');
-//         boxPos = box .getAttribute('position');
-//         console.log(playerPos.distanceTo(boxPos));
-//     }
-// });
-// var playerEl = document.querySelector("[camera]");
-// playerEl.addEventListener("collide", function(e) {
-//     console.log("Player has collided with body #" + e.detail.targetEl.id);
-//     e.detail.targetEl; // Other entity, which playerEl touched.
-// });

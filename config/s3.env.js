@@ -1,6 +1,6 @@
 const author = {
-    accessKeyId: "AKIAYC6BLD5ZIO7LL6CV",
-    secretAccessKey: "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",
+    accessKeyId: "AKIAYC6BLD5ZFHS66UUK",
+    secretAccessKey: "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",
     region: "ap-southeast-1"
 }
 
