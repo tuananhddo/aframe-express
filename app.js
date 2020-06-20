@@ -15,6 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var modelsRouter = require('./routes/models');
 var syncRouter = require('./routes/sync');
+var profileRouter = require('./routes/profileController');
 var awsRouter = require('./routes/aws');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -54,7 +55,12 @@ app.use('/users', usersRouter);
 app.use('/model', modelsRouter);
 app.use('/sync', syncRouter);
 app.use('/aws', awsRouter);
+app.use('/profile', profileRouter);
 
+var busboy = require('connect-busboy');
+
+// default options, no immediate parsing
+app.use(busboy());
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

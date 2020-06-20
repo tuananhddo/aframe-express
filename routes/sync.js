@@ -9,24 +9,23 @@ const syncService = require('./../service/syncService');
 let files = syncService.getWorkingFiles();
 const authService = require('./../service/authService');
 const userRepo = require('./../repo/User')
+const profileRepo = require('./../repo/profile')
 
-router.post('/save', (req, res) => {
-    const changes = req.body;
-    // userRepo.updateUserData(req.user, changes);
-    userRepo.updateUserData({username:'demo'}, changes);
-
-    // Accepted.
-    // syncService.sync(changes);
-    res.sendStatus(200);
-});
 router.post('/create', (req, res) => {
     const changes = req.body;
     console.log(changes)
     // Accepted.
     // userRepo.updateUserCreateData(req.user, changes);
-    userRepo.updateUserCreateData({username:'demo',createData:''}, changes);
-
-    // syncService.syncCreate(changes);
+    userRepo.updateUserCreateData({username: 'demo', createData: ''}, changes);
+    res.sendStatus(200);
+});
+router.post('/save', (req, res) => {
+    const changes = req.body;
+    // userRepo.updateUserData(req.user, changes);
+    userRepo.updateUserData({username: 'demo'}, changes);
+    // profileRepo.updateProfileUpdateData()
+    // Accepted.
+    // syncService.sync(changes);
     res.sendStatus(200);
 });
 router.get('/list-create', authService.isLoggedIn, function (req, res, next) {

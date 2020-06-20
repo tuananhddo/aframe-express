@@ -16,5 +16,11 @@ const connection = {
 //   password: 'admin@3cdn',
 //   database: 'user-db'
 // };
-
+// const connection = {
+//   host: 'user-db.mysql.database.azure.com',
+//   user: 'admin',
+//   password: 'admin',
+//   database: 'cylinder'
+// };
+//cylinder
 module.exports = connection;

@@ -5,7 +5,7 @@ var connection = require('../config/dbConnection.js');
 
 module.exports = function (passport) {
     passport.serializeUser(function (user, done) {
-        done(null, {username: user.username, updateData: user.updateData, createData: user.createData});
+        done(null, {username: user.username, id: user.id});
     });
 
     passport.deserializeUser(function (user, done) {
