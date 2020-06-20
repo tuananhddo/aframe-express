@@ -14,7 +14,7 @@ fetch(BASE_URL + `/profile/${profileId}/list-create`)
                 entity.setAttribute(comItem, item.components[comItem])
             }
             // entity.setAttribute(item.c)
-            if (item.element == "a-asset-item" || item.element == 'img' || item.element == 'audio') {
+            if (item.element == "a-asset-item" || item.element == 'img' || item.element == 'audio' || item.element == 'video') {
                 mySceneAssets.append(entity)
             } else {
                 mySceneEl.append(entity)

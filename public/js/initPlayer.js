@@ -19,11 +19,11 @@ let scene = document.querySelector('a-scene');
 const videoPlayer = new AVideoPlayer();
 
 // Play button action
-document.querySelector('#control-play').addEventListener('click', function () {
-    if (videoPlayer.paused) {
-        scene.lightOn()
-    } else {
-        scene.lightOff();
-        // hideCursor();
-    }
-});
+// document.querySelector('#control-play').addEventListener('click', function () {
+//     if (videoPlayer.paused) {
+//         scene.lightOn()
+//     } else {
+//         scene.lightOff();
+//         // hideCursor();
+//     }
+// });

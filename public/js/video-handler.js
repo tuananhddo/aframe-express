@@ -61,7 +61,7 @@ AFRAME.registerComponent('video-handler', {
             let srcId = el.getAttribute('src');
             let videoSrc = document.querySelector(srcId)
             videoPlayer.elVideo = videoSrc;
-
+            console.log(srcId)
             document.getElementById('control-play').setAttribute("visible", true);
             moveVideoPlayerToCurrentVideo(el.object3D.position, el.getAttribute('width'), el.getAttribute('height'))
 
