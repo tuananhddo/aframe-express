@@ -1,0 +1,11 @@
+#des_modal {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 30%;
+    height: 90%;
+    float: right;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    overflow: auto;
+    display: none;
+}

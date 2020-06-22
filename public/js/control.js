@@ -73,3 +73,34 @@ AFRAME.registerComponent('audio-stopper', {
         });
     }
 });
+const openModal = () => {
+    let modal = document.getElementById('des_modal');
+    let myScene = document.querySelector('a-scene')
+    let camera = document.querySelector('#rig')
+    modal.style.display = 'inline';
+    myScene.style.zIndex = -1;
+    camera.removeAttribute('wasd-controls')
+
+}
+const closeModal = () => {
+    let modal = document.getElementById('des_modal');
+    let myScene = document.querySelector('a-scene')
+    let camera = document.querySelector('#rig')
+    modal.style.display = 'none';
+    camera.setAttribute('wasd-controls', '')
+    myScene.style.zIndex = 'auto';
+}
+AFRAME.registerComponent('detail-handler', {
+    init: function () {
+        this.el.addEventListener('click', function (evt) {
+            let description = document.querySelector('#description')
+            let text = this.getAttribute('description');
+            description.innerHTML = !!text ? text : '';
+            openModal()
+        });
+    }
+});
+
+function clickCloseModal() {
+    closeModal()
+}

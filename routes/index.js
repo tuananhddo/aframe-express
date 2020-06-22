@@ -44,14 +44,6 @@ router.get('/logout', function (req, res, next) {
     req.logout();
     res.redirect('/login');
 });
-router.get('/test', function (req, res, next) {
-    // res.render('index', { title: 'Express' });
-    res.render('profile.ejs');
-});
-router.get('/test/2', function (req, res, next) {
-    // res.render('index', { title: 'Express' });
-    res.sendFile('test-2.html', {root: '.'})
-});
 router.post('/model/chunk/:name/:total/:current', upload.single('model'), function (req, res, next) {
     const chunkPath = "temp/";
     const processedFile = req.file || {}; // MULTER xử lý và gắn đối tượng FILE vào req

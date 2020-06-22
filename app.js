@@ -17,6 +17,7 @@ var modelsRouter = require('./routes/models');
 var syncRouter = require('./routes/sync');
 var profileRouter = require('./routes/profileController');
 var awsRouter = require('./routes/aws');
+var testRouter = require('./routes/testController');
 var passport = require('passport');
 var flash = require('connect-flash');
 var app = express();
@@ -56,6 +57,7 @@ app.use('/model', modelsRouter);
 app.use('/sync', syncRouter);
 app.use('/aws', awsRouter);
 app.use('/profile', profileRouter);
+app.use('/test', testRouter);
 
 var busboy = require('connect-busboy');
 
