@@ -11,7 +11,7 @@
 //   database: 'user-db'
 // };
 const connection = {
-  host: 'user-db.mysql.database.azure.com',
+  host: 'user-aframe-db.mysql.database.azure.com',
   user: 'adminDBC@user-aframe-db',
   password: 'ccna@1111',
   database: 'user-db'

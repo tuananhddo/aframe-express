@@ -28,7 +28,7 @@ app.listen(1998, function () {
 });
 
 // app.set('view engine', 'pug');
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
 app.use(logger('dev'));
 // app.use(express.json());
@@ -49,7 +49,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(flash());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
+console.log(path.join(__dirname, '/public'))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRouter);
