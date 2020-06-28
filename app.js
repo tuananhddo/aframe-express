@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var session = require('express-session');
+global.appRoot = path.resolve(__dirname);
 
 var corsOptions = {
     origin: '*',
@@ -54,7 +55,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/model', modelsRouter);
-app.use('/sync', syncRouter);
+// app.use('/sync', syncRouter);
 app.use('/aws', awsRouter);
 app.use('/profile', profileRouter);
 app.use('/test', testRouter);

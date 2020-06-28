@@ -4,8 +4,7 @@ var express = require('express');
 var router = express.Router();
 const authService = require('../service/authService');
 // const profileRepo = require('../repo/profile')
-const profileRepo = require(path.join(__dirname, '/repo/profile'))
-
+const profileRepo = require(path.join(appRoot, 'repo','Profile'))
 router.post('/:id/save', (req, res) => {
     const changes = req.body;
     const id = req.params.id;
