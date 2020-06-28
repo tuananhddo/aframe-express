@@ -1,6 +1,6 @@
 const lastPath = window.location.pathname.lastIndexOf('/');
-// const profileId = window.location.pathname.slice(lastPath + 1)
-const profileId = 1
+const profileId = window.location.pathname.slice(lastPath + 1)
+// const profileId = 1
 
 fetch(BASE_URL + `/profile/${profileId}/list-create`)
 // .then(response => console.log(response))

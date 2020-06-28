@@ -15,7 +15,7 @@ router.get('/profile/all', authService.isLoggedIn, function (req, res, next) {
     console.log(req.user);
     res.render('profile.ejs', {listProfile: []});
 });
-router.get('/profile/:id', authService.isLoggedIn, function (req, res, next) {
+router.get('/profile/:id', function (req, res, next) {
     console.log(req.user);
     res.render('profile.ejs');
 });

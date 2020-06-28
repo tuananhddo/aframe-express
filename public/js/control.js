@@ -57,7 +57,7 @@ AFRAME.registerComponent('audio-stopper', {
     init: function () {
         var lastIndex = -1;
         var COLORS = ['red', 'green', 'blue'];
-        console.log(this)
+        // console.log(this)
 
         this.el.addEventListener('click', function (evt) {
             // lastIndex = (lastIndex + 1) % COLORS.length;
@@ -90,7 +90,7 @@ const closeModal = () => {
     camera.setAttribute('wasd-controls', '')
     myScene.style.zIndex = 'auto';
 }
-AFRAME.registerComponent('detail-handler', {
+AFRAME.registerComponent('detailhandler', {
     init: function () {
         this.el.addEventListener('click', function (evt) {
             let description = document.querySelector('#description')

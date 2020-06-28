@@ -29,6 +29,9 @@
     </script>
     <script src="/js/control.js"></script>
     <script src="/js/getCreateEntity.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/mystyle.css">
 
 </head>
 <body>
@@ -36,8 +39,14 @@
 <div id="video-permission">
     <button id="video-permission-button">Allow VR video</button>
 </div>
-
-<a-scene id="mainUserScene" fog="type: linear; near:12; far:20; color: #dbdedb;"><!--Night mode: #0c192a-->
+<div id="des_modal">
+    <div id="description">
+    </div>
+    <div class="text-center">
+        <button onclick="clickCloseModal()" id="close" class="btn btn-success">Close</button>
+    </div>
+</div>
+<a-scene id="mainUserScene"><!--Night mode: #0c192a-->
 
     <a-assets>
         <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
@@ -51,8 +60,8 @@
         <img src="/images/seek-back.png" id="seek-back" crossorigin="anonymous">
         <img src="/images/white_grid_thin.png" id="grid" crossorigin="anonymous">
         <video id="video-src-default" src=""></video>
-        <video id="video-srcc" src="/video/a.mp4"></video>
-        <video id="video-srcc2" src="/video/a.mp4"></video>
+<!--        <video id="video-srcc" src="/video/a.mp4"></video>-->
+<!--        <video id="video-srcc2" src="/video/a.mp4"></video>-->
 
     </a-assets>
 
@@ -66,7 +75,7 @@
 
     <!-- MEDIAS HOLDER -->
     <!--    <a-sound id="alert-sound" src="src: url(assets/action.wav)" autoplay="false" position="0 0 0"></a-sound>-->
-    <a-video video-handler id="video-screen" src="#video-srcc" position="0.5 5.0 -13.1" width="4" height="2"></a-video>
+<!--    <a-video video-handler id="video-screen" src="#video-srcc" position="0.5 5.0 -13.1" width="4" height="2"></a-video>-->
 
     <!-- END MEDIAS HOLDER -->
 
@@ -84,7 +93,7 @@
 <script>
     // const BASE_URL = window.location.protocol + "//" + window.location.host;
     const myScene = document.querySelector('#mainUserScene');
-    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector-local.min.js`;
+    const inspectorURL = `url: ${BASE_URL}/js/aframe-inspector.min.js`;
     // myScene.setAttribute('inspector', inspectorURL);
     console.log(myScene)
     // var inspector = myScene.components.inspector;
