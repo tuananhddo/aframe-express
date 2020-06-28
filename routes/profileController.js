@@ -2,8 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
-const authService = require('./../service/authService');
-const profileRepo = require('./../repo/profile')
+const authService = require('../service/authService');
+const profileRepo = require('../repo/profile')
 
 router.post('/:id/save', (req, res) => {
     const changes = req.body;
