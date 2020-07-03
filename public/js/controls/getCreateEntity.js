@@ -11,6 +11,7 @@ fetch(BASE_URL + `/profile/${profileId}/list-create`)
         data.map((item) => {
             let entity = document.createElement(item.element);
             for (let comItem in item.components) {
+                console.log(item.components[comItem])
                 entity.setAttribute(comItem, item.components[comItem])
             }
             // entity.setAttribute(item.c)
