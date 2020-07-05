@@ -66,19 +66,30 @@ function createProfile(req, callback) {
 }
 
 function deleteProfile(req, callback) {
-    let deleteInProfileSql = "DELETE FROM profile WHERE id = ?  AND id in (SELECT profile_id from userprofile WHERE user_id = ?)";
+    let checkSQL = "SELECT * FROM profile " +
+        "WHERE id in (SELECT profile_id from userprofile WHERE user_id = ?) " +
+        "AND id = ?";
+    let deleteInProfileSql = "DELETE FROM profile WHERE id = ?";
     let deleteInUserProfileSql = "DELETE FROM userprofile WHERE profile_id = ? AND user_id = ?";
     const profileData = req.body;
     if ((Object.keys(profileData).length === 0 && profileData.constructor === Object) || !profileData.id
     ) {
         return callback(null)
     } else {
-        connection.query(deleteInUserProfileSql, [profileData.id, req.user.id], function (err, results) {
+        connection.query(checkSQL, [profileData.id, req.user.id], function (err, results) {
             if (err) throw err;
-            connection.query(deleteInProfileSql, [profileData.id, req.user.id], function () {
-                callback({})
-            })
-        });
+            if (results.length > 0) {
+                return callback(null)
+            }
+            connection.query(deleteInUserProfileSql, [profileData.id, req.user.id], function (err, results) {
+                if (err) throw err;
+                connection.query(deleteInProfileSql, [profileData.id], function (err, results) {
+                    if (err) throw err;
+                    return callback({})
+                })
+            });
+        })
+
     }
 }
 

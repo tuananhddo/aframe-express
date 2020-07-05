@@ -4,10 +4,8 @@ var multer = require('multer');
 const UPLOAD_PATH = 'public/models';
 const UPLOAD_PATH_IMAGE = 'public/images';
 const UPLOAD_PATH_AUDIO = 'public/audio';
-
 var upload = multer({dest: UPLOAD_PATH});
 var fs = require('fs');
-let files;
 
 router.get('/', function (req, res, next) {
     let listFile;

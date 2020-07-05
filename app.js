@@ -12,7 +12,7 @@ var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 99 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-var indexRouter = require('./routes/userController');
+var indexRouter = require('./routes/UserController');
 var profileRouter = require('./routes/ProfileController');
 var modelsRouter = require('./routes/modelsController');
 var syncRouter = require('./routes/SyncController');

@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                 <% for(var i = 0; i < listProfile.length; i++){ %>
-                    <tr class="d-flex" id=<%= 'exhibitionRow' + listProfile[i].id %>>
+                    <tr class="d-flex" id=<%= 'exhibitionRowNumber-' + listProfile[i].id %>>
                         <td class="col-sm-1"><%= i + 1 %></td>
                         <td class="col-sm-4">
                             <a href=<%= '/profile/' + listProfile[i].name %>  target="_blank"
@@ -136,17 +136,19 @@
 
     function deleteProfile(id) {
         if (confirm("Xác nhận xóa triển lãm ?")) {
-            console.log(id)
+            postData(DELETE_PROFILE_URL, {id: id})
+                .then(data => {
+                    if (data == 320) {
+                        console.log('Error')
+                    } else {
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000);
+                    }
+                    console.log(data); // JSON data parsed by `data.json()` call
+                });
         }
-        postData(DELETE_PROFILE_URL, {id: id})
-            .then(data => {
-                if (data == 320) {
-                    console.log('Error')
-                }else {
 
-                }
-                console.log(data); // JSON data parsed by `data.json()` call
-            });
 
     }
 
@@ -159,6 +161,7 @@
             setTimeout(() => {
                 document.getElementById('infoAlert').style.display = 'none'
             }, 4000)
+            return
         } else {
             document.getElementById('infoAlert').style.display = 'none'
         }
@@ -166,6 +169,8 @@
             .then(data => {
                 if (data == 320) {
                     console.log('Create Error')
+                } else {
+                    location.reload()
                 }
                 console.log(data); // JSON data parsed by `data.json()` call
             });

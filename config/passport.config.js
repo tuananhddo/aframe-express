@@ -53,9 +53,9 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, username, password, done) {
+            let email = req.body.email;
             let sqlFindUser = "SELECT * FROM user WHERE username = ?";
-            var createUserSql = "INSERT INTO user (username, password) VALUES ?";
-
+            var createUserSql = "INSERT INTO user (username, password, email) VALUES ?";
             console.log('findUser' + sqlFindUser)
             console.log('findUser' + createUserSql)
 
@@ -64,13 +64,14 @@ module.exports = function (passport) {
                 if (results.length != 0) {
                     return done(null, false, req.flash('signUpMessage', 'duplicate user found.')); // req.flash is the way to set flashdata using connect-flash
                 }
-            });
-            connection.query(createUserSql,[[[username,password]]], function (err, result) {
-                if (err) throw err;
-                console.log("1 user inserted")
-                return done(null, result);
+                connection.query(createUserSql, [[[username, password, email]]], function (err, result) {
+                    if (err) throw err;
+                    console.log("1 user inserted")
+                    return done(null, {username: username, id: result.insertId});
 
+                });
             });
+
         }
     ))
 }

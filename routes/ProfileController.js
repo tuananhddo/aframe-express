@@ -4,6 +4,8 @@ const authService = require('./../service/authService');
 const profileService = require('./../service/profileService');
 
 router.get('/all', authService.isLoggedIn, function (req, res, next) {
+    console.log(req.user);
+
     profileService.getLisProfile(req.user, function (profiles) {
         res.render('list_profile.ejs', {listProfile: profiles, user: req.user});
     })
@@ -38,7 +40,7 @@ router.post('/delete', function (req, res, next) {
         if (!profile) {
             res.sendStatus(320)
         } else {
-            res.sendStatus(200)
+            res.json({code: '01'})
         }
     })
 })
