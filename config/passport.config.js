@@ -20,11 +20,8 @@ module.exports = function (passport) {
         },
         function (req, username, password, done) {
             let sql = "SELECT * FROM user WHERE username = " + '"' + username + '"';
-
-            console.log(sql)
             connection.query(sql, function (err, results) {
                 if (err) throw err;
-                console.log(results)
                 if (!Array.isArray(results) || results.length == 0) {
                     return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
                 }

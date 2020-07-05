@@ -2,41 +2,96 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <title>Danh sách triển lãm ảo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
-<body>
-<div class="container">
+<body style="height: 100%">
+<div class="container-fluid">
+    <div class="row" style="height: 100px">
+        <p class="col-10 text-center mt-4" style="font-size: 30px">Danh sách profile triển lãm ảo</p>
+        <div class="col-1 dropdown show mt-4 ml-4 ">
+            <a class="btn btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tài khoản <b><%= user.username %></b>
+            </a>
 
-<div class="col-sm-6 col-sm-offset-3">
-
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-    <!-- LOGIN FORM -->
-    <form action="/signup" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="username">
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                <button class="dropdown-item" data-toggle="modal" data-target="#createModal">Thêm triển lãm</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr class="d-flex">
+                    <th class="col-sm-1">STT</th>
+                    <th class="col-sm-4">Tên triển lãm ảo</th>
+                    <th class="col-sm-4">Mô tả</th>
+                    <th class="col-sm-3">Thao tác</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i = 0; i < listProfile.length; i++){ %>
+                    <tr class="d-flex">
+                        <td class="col-sm-1"><%= i + 1 %></td>
+                        <td class="col-sm-4">
+                            <a href=<%= '/users/profile/' + listProfile[i].name %>  target="_blank"
+                            >
+                                <%= listProfile[i].name %>
+                            </a>
+                        </td>
+                        <td class="col-sm-4"><%= listProfile[i].description %></td>
+                        <td class="col-sm-3">
+                            <button type="button" class="btn btn-outline-success">Sửa thông tin</button>
+                            <a href=<%= '/users/profile/' + listProfile[i].name %>  target="_blank" class="btn btn-outline-primary"  role="button">
+                                Truy cập
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+
         </div>
 
-        <button type="submit" class="btn btn-warning btn-lg">Signup</button>
-    </form>
-
-    <hr>
-
-    <p>Already have an account? <a href="/login">Login</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-
+    </div>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 </body>
 </html>

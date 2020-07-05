@@ -1,17 +1,27 @@
-const lastPath = window.location.pathname.lastIndexOf('/');
-const profileId = window.location.pathname.slice(lastPath + 1)
+// const lastPath = window.location.pathname.lastIndexOf('/');
+// const profileId = window.location.pathname.slice(lastPath + 1)
 // const profileId = 1
+const profileId = document.getElementById('profilePersonalId').value
+// console.log(profileId2.value)
+if (profileId == '999') {
+    alert('')
+    let myScene = document.querySelector('#mainUserScene');
+    myScene.addEventListener('loaded', function () {
+        myScene.setAttribute('light', "defaultLightsEnabled: false")
 
+    });
+}
 fetch(BASE_URL + `/profile/${profileId}/list-create`)
 // .then(response => console.log(response))
     .then(response => response.json())
     .then(data => {
         let mySceneEl = document.querySelector('a-scene');
-        let mySceneAssets = document.querySelector('a-assets');
+        let mySceneAssets = document.querySelector('#user-assets');
+        // console.log(mySceneAssets)
         data.map((item) => {
             let entity = document.createElement(item.element);
             for (let comItem in item.components) {
-                console.log(item.components[comItem])
+                // console.log(item.components[comItem])
                 entity.setAttribute(comItem, item.components[comItem])
             }
             // entity.setAttribute(item.c)
@@ -39,10 +49,10 @@ function getUpdate() {
                     const entries = Object.entries(data);
                     for (const [key, val] of entries) {
 
-                        console.log(`There are #${key}`)
+                        // console.log(`There are #${key}`)
                         // console.log(val)
                         let entity = document.querySelector('#' + key);
-                        console.log(entity)
+                        // console.log(entity)
                         let updateComponentEntries = Object.entries(val);
                         for (const [keyCom, valCom] of updateComponentEntries) {
                             entity.setAttribute(keyCom, valCom);
@@ -50,7 +60,7 @@ function getUpdate() {
                     }
                 }
             );
-    }, 100);
+    }, 500);
 
 }
 

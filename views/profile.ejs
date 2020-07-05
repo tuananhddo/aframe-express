@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Grid Demo</title>
+    <title>Triển lãm ảo</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <style type="text/css">
         #video-permission {
@@ -28,13 +28,14 @@
         const BASE_URL = window.location.protocol + "//" + window.location.host;
     </script>
     <script src="/js/controls/control.js"></script>
-    <script src="/js/controls/getCreateEntity.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/mystyle.css">
 
 </head>
 <body>
+<input id='profilePersonalId' type="hidden" value=<%= profileId %>>
 
 <div id="video-permission">
     <button id="video-permission-button">Allow VR video</button>
@@ -46,13 +47,14 @@
         <button onclick="clickCloseModal()" id="close" class="btn btn-success">Close</button>
     </div>
 </div>
-<a-scene id="mainUserScene"><!--Night mode: #0c192a-->
+<a-scene id="mainUserScene" ><!--Night mode: #0c192a-->
 
+    <a-assets id="user-assets"></a-assets>
     <a-assets>
         <a-asset-item id="door-glb" src="/models/baseCreator/door.glb"></a-asset-item>
         <a-asset-item id="base-glb" src="/models/baseCreator/baseForObJect.glb"></a-asset-item>
     </a-assets>
-    <a-assets>
+    <a-assets name="video-player-assets">
         <img src="/images/play3.png" id="play" crossorigin="anonymous">
         <img src="/images/pause.png" id="pause" crossorigin="anonymous">
         <img src="/images/volume-normal.png" id="volume-normal" crossorigin="anonymous">
@@ -62,7 +64,6 @@
         <video id="video-src-default" src=""></video>
         <!--        <video id="video-srcc" src="/video/a.mp4"></video>-->
         <!--        <video id="video-srcc2" src="/video/a.mp4"></video>-->
-
     </a-assets>
 
     <!-- CURSOR -->
@@ -95,7 +96,7 @@
     const myScene = document.querySelector('#mainUserScene');
     const inspectorURL = `url: ${BASE_URL}/js/tool/aframe-inspector-local.min.js`;
     // myScene.setAttribute('inspector', inspectorURL);
-    console.log(myScene)
+    // console.log(myScene)
     // var inspector = myScene.components.inspector;
 
     myScene.addEventListener('loaded', function () {
@@ -103,6 +104,8 @@
 
     });
 </script>
+<script src="/js/controls/getCreateEntity.js"></script>
+
 <script src="/js/controls/AVideoPlayer.js"></script>
 <script src="/js/controls/initPlayer.js"></script>
 <script src="/js/controls/video-handler.js"></script>
