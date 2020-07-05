@@ -49,18 +49,21 @@
                 </thead>
                 <tbody>
                 <% for(var i = 0; i < listProfile.length; i++){ %>
-                    <tr class="d-flex">
+                    <tr class="d-flex" id=<%= 'exhibitionRow' + listProfile[i].id %>>
                         <td class="col-sm-1"><%= i + 1 %></td>
                         <td class="col-sm-4">
-                            <a href=<%= '/users/profile/' + listProfile[i].name %>  target="_blank"
+                            <a href=<%= '/profile/' + listProfile[i].name %>  target="_blank"
                             >
                                 <%= listProfile[i].name %>
                             </a>
                         </td>
                         <td class="col-sm-4"><%= listProfile[i].description %></td>
                         <td class="col-sm-3">
-                            <button type="button" class="btn btn-outline-success">Sửa thông tin</button>
-                            <a href=<%= '/users/profile/' + listProfile[i].name %>  target="_blank" class="btn btn-outline-primary"  role="button">
+                            <button type="button" class="btn btn-outline-success"
+                                    onclick=<%= 'deleteProfile(' + listProfile[i].id + ')' %>>Xóa
+                            </button>
+                            <a href=<%= '/profile/' + listProfile[i].name %>  target="_blank"
+                               class="btn btn-outline-primary" role="button">
                                 Truy cập
                             </a>
                         </td>
@@ -74,24 +77,100 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm mới triển lãm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id='infoAlert' class="alert alert-warning" role="alert" style="display: none">
+                    Vui lòng nhập đủ thông tin
+                </div>
+                <div class="input-group mb-3">
+                    <input id='profileNameCreate' type="text" class="form-control" placeholder="Tên triển lãm"
+                           aria-label=""
+                           aria-describedby="basic-addon1">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input id='profileDesCreate' type="text" class="form-control" placeholder="Mô tả"
+                           aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="sendRQ()">Thêm mới</button>
+            </div>
+        </div>
     </div>
-  </div>
+
 </div>
+<script>
+    const BASE_URL = window.location.protocol + "//" + window.location.host;
+    const CREATE_PROFILE_URL = BASE_URL + '/profile/create/';
+    const DELETE_PROFILE_URL = BASE_URL + '/profile/delete/';
+
+    async function postData(url = '', data = {}) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            // mode: 'cors', // no-cors, *cors, same-origin
+            // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            // credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+    }
+
+
+    function deleteProfile(id) {
+        if (confirm("Xác nhận xóa triển lãm ?")) {
+            console.log(id)
+        }
+        postData(DELETE_PROFILE_URL, {id: id})
+            .then(data => {
+                if (data == 320) {
+                    console.log('Error')
+                }else {
+
+                }
+                console.log(data); // JSON data parsed by `data.json()` call
+            });
+
+    }
+
+
+    function sendRQ() {
+        let name = document.getElementById('profileNameCreate').value
+        let des = document.getElementById('profileDesCreate').value
+        if (!name || !des) {
+            document.getElementById('infoAlert').style.display = 'block'
+            setTimeout(() => {
+                document.getElementById('infoAlert').style.display = 'none'
+            }, 4000)
+        } else {
+            document.getElementById('infoAlert').style.display = 'none'
+        }
+        postData(CREATE_PROFILE_URL, {name: name, description: des})
+            .then(data => {
+                if (data == 320) {
+                    console.log('Create Error')
+                }
+                console.log(data); // JSON data parsed by `data.json()` call
+            });
+        $('#createModal').modal('hide')
+    }
+</script>
 </body>
 </html>

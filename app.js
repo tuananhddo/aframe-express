@@ -12,10 +12,10 @@ var corsOptions = {
     origin: '*',
     optionsSuccessStatus: 99 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var modelsRouter = require('./routes/models');
-var profileRouter = require('./routes/profileController');
+var indexRouter = require('./routes/userController');
+var profileRouter = require('./routes/ProfileController');
+var modelsRouter = require('./routes/modelsController');
+var syncRouter = require('./routes/SyncController');
 var testRouter = require('./routes/testController');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -51,9 +51,9 @@ app.use(express.static(path.join(__dirname, '/public')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/model', modelsRouter);
 app.use('/profile', profileRouter);
+app.use('/model', modelsRouter);
+app.use('/sync', syncRouter);
 app.use('/test', testRouter);
 
 var busboy = require('connect-busboy');

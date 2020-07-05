@@ -1,7 +1,6 @@
-// const lastPath = window.location.pathname.lastIndexOf('/');
-// const profileId = window.location.pathname.slice(lastPath + 1)
 // const profileId = 1
 const profileId = document.getElementById('profilePersonalId').value
+const DEFAULT_SYNC_URL = BASE_URL + '/sync'
 // console.log(profileId2.value)
 if (profileId == '999') {
     alert('')
@@ -11,7 +10,7 @@ if (profileId == '999') {
 
     });
 }
-fetch(BASE_URL + `/profile/${profileId}/list-create`)
+fetch(DEFAULT_SYNC_URL + `/${profileId}/list-create`)
 // .then(response => console.log(response))
     .then(response => response.json())
     .then(data => {
@@ -42,7 +41,7 @@ function getUpdate() {
         // }
         // let ids = document.querySelectorAll("#entity-banghoanthien6.glb");
 
-        fetch(BASE_URL + `/profile/${profileId}/list-update`)
+        fetch(DEFAULT_SYNC_URL + `/${profileId}/list-update`)
         // .then(response => console.log(response))
             .then(response => response.json())
             .then(data => {

@@ -10,7 +10,7 @@ router.get('/login', function (req, res, next) {
     // res.render('index', { title: 'Express' });
 });
 router.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/users/profile/all',
+    successRedirect: '/profile/all',
     failureRedirect: '/login',
 }));
 router.get('/signup', function (req, res, next) {
@@ -18,7 +18,7 @@ router.get('/signup', function (req, res, next) {
 });
 // Xử lý form đăng ký ở đây
 router.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: 'users/profile/all', // Điều hướng tới trang hiển thị profile
+    successRedirect: '/profile/all', // Điều hướng tới trang hiển thị profile
     failureRedirect: '/signup', // Trở lại trang đăng ký nếu lỗi
     failureFlash: true
 }));
