@@ -30,6 +30,7 @@ fetch(DEFAULT_SYNC_URL + `/${profileId}/list-create`)
                 mySceneEl.append(entity)
             }
         })
+        blockHandle()
     })
     .then(() => getUpdate());
 

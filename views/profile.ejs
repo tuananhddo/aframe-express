@@ -47,7 +47,7 @@
         <button onclick="clickCloseModal()" id="close" class="btn btn-success">Close</button>
     </div>
 </div>
-<a-scene id="mainUserScene" ><!--Night mode: #0c192a-->
+<a-scene id="mainUserScene" debug><!--Night mode: #0c192a-->
 
     <a-assets id="user-assets"></a-assets>
     <a-assets>
@@ -61,13 +61,15 @@
         <img src="/images/volume-mute.png" id="volume-mute" crossorigin="anonymous">
         <img src="/images/seek-back.png" id="seek-back" crossorigin="anonymous">
         <img src="/images/white_grid_thin.png" id="grid" crossorigin="anonymous">
+        <!--            <img id="floorImg" src="https://aframe.io/sample-assets/assets/images/terrain/grasslight-big.jpg" crossOrigin="true">-->
+
         <video id="video-src-default" src=""></video>
         <!--        <video id="video-srcc" src="/video/a.mp4"></video>-->
         <!--        <video id="video-srcc2" src="/video/a.mp4"></video>-->
     </a-assets>
 
     <!-- CURSOR -->
-    <a-entity position="0 3.8 -10">
+    <a-entity id='cameraWrapper' position="0 3.8 -10">
         <a-entity id="rig" camera wasd-controls look-controls>
             <a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
         </a-entity>
@@ -89,18 +91,61 @@
              visible="false"
              scale="0.75 0.75 0.75"></a-image>
     <!-- END CONTROLS -->
-
+    <!-- Floor. -->
+    <a-box id="floor" position="0 -1 0" height=".2" width="80" depth="80"
+           roughness="1" repeat="50 20"
+           metalness=".1" color="#666666">
+    </a-box>
 </a-scene>
 <script>
     // const BASE_URL = window.location.protocol + "//" + window.location.host;
     const myScene = document.querySelector('#mainUserScene');
-    const inspectorURL = `url: ${BASE_URL}/js/tool/aframe-inspector-local.min.js`;
-    // myScene.setAttribute('inspector', inspectorURL);
-    // console.log(myScene)
-    // var inspector = myScene.components.inspector;
+    const inspectorURL = `url: ${BASE_URL}/js/tool/aframe-inspector-local2.min.js`;
+
+    function blockHandle() {
+        let listDetailHandler = document.querySelectorAll('[detailhandler]')
+        console.log(listDetailHandler)
+        for (let i = 0; i < listDetailHandler.length; i++) {
+            let item = listDetailHandler[i]
+            item.removeAttribute('detailhandler')
+            item.setAttribute('detailpause', '')
+            item.removeEventListener('click', detailHandlerEvent)
+        }
+    }
+
+    function unlockHandle() {
+        let listDetailHandler = document.querySelectorAll('[detailpause]')
+        console.log(listDetailHandler)
+
+        for (let i = 0; i < listDetailHandler.length; i++) {
+            let item = listDetailHandler[i]
+            item.setAttribute('detailhandler', 'abc')
+            item.removeAttribute('detailpause')
+            // item.removeEventListener('click', detailHandlerEvent)
+        }
+                console.log(document)
+
+    }
 
     myScene.addEventListener('loaded', function () {
         myScene.setAttribute('inspector', inspectorURL);
+        window.postMessage('INJECT_AFRAME_INSPECTOR', '*');
+        setTimeout(function () {
+            let sceneBtn = document.getElementById('backToTheSceneButtonLink')
+            sceneBtn.addEventListener('click', function () {
+                if (sceneBtn.textContent == 'Quay lại màn hình chính') {
+                    console.log('UNLOCK')
+                    unlockHandle()
+                } else {
+                    console.log('BLOCK')
+                    blockHandle()
+                }
+            })
+
+
+        }, 2000)
+
+        // blockHandle()
 
     });
 </script>

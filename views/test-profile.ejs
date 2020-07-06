@@ -7,7 +7,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/stylesheets/mystyle.css">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="/js/control.js">
+    <script src="/js/controls/control.js">
 
     </script>
 </head>
@@ -20,7 +20,7 @@
     </div>
 </div>
 <div>
-    <a-scene>
+    <a-scene inspector="http://localhost:3333/dist/aframe-inspector.js">
         <a-assets>
             <!--        <a-asset-item id="tree2-obj" src="models/Box/box.obj"></a-asset-item>-->
         </a-assets>
@@ -35,9 +35,8 @@
                     position="0 0 -2"
                     geometry="primitive: box"
                     material="color: red"
-                    cursor-listener
-                    detailhandler
-                    description="jhasgfuabsfb"></a-entity>
+                    checkpoint-listener
+            ></a-entity>
         </a-entity>
 
     </a-scene>
