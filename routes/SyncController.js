@@ -19,7 +19,7 @@ router.post('/:id/create', (req, res) => {
     });
 
 });
-router.get('/:id/reset', authService.isLoggedIn, (req, res) => {
+router.post('/:id/reset', authService.isLoggedIn, (req, res) => {
     const id = req.params.id;
     syncService.resetProfile(id);
     res.sendStatus(200);

@@ -38,7 +38,7 @@ app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs'); // chỉ định view engine là ejs
 
 // app.set('view engine', 'html');
-app.use(session({secret: 'cat', cookie: {maxAge: 600000}}));
+app.use(session({secret: 'cat', cookie: {maxAge: 6000000}}));
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport.config.js')(passport); //

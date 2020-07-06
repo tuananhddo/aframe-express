@@ -100,7 +100,9 @@ function detailHandlerEvent(evt) {
     let description = document.querySelector('#description')
     let text = this.getAttribute('description');
     description.innerHTML = !!text ? text : '';
-    openModal()
+    if (!!text) {
+        openModal()
+    }
 }
 
 function audioHandlerEvent(evt) {

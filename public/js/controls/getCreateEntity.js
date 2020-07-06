@@ -49,8 +49,8 @@ function getUpdate() {
                     const entries = Object.entries(data);
                     for (const [key, val] of entries) {
 
-                        // console.log(`There are #${key}`)
-                        // console.log(val)
+                        console.log(`There are #${key}`)
+                        console.log(val)
                         let entity = document.querySelector('#' + key);
                         // console.log(entity)
                         let updateComponentEntries = Object.entries(val);

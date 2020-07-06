@@ -41,7 +41,7 @@
     <button id="video-permission-button">Allow VR video</button>
 </div>
 <div id="des_modal">
-    <div id="description">
+    <div id="description" style="height: 90%;">
     </div>
     <div class="text-center">
         <button onclick="clickCloseModal()" id="close" class="btn btn-success">Close</button>
@@ -100,7 +100,7 @@
 <script>
     // const BASE_URL = window.location.protocol + "//" + window.location.host;
     const myScene = document.querySelector('#mainUserScene');
-    const inspectorURL = `url: ${BASE_URL}/js/tool/aframe-inspector-local2.min.js`;
+    const inspectorURL = `url: ${BASE_URL}/js/tool/aframe-inspector-local.min.js`;
 
     function blockHandle() {
         let listDetailHandler = document.querySelectorAll('[detailhandler]')
