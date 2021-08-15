@@ -10,7 +10,7 @@ var corsOptions = {
 }
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var modelsRouter = require('./routes/model');
+var modelsRouter = require('./routes/models');
 var syncRouter = require('./routes/sync');
 
 var app = express();
